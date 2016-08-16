@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">电影天堂</string>
+    <string name="searchHint">请输入关键词</string>
+    <string name="newMovie">最新电影</string>
+    <string name="search">搜索</string>
+    <string name="setting">设置</string>
+    <string name="noInternet">无网络连接或网路异常,请打开网络进行刷新</string>
+    <string name="noMoreMovie">没有更多最新电影了</string>
+    <string name="movieTitle">电影标题</string>
+    <string name="movieDate">更新日期</string>
+    <string name="pleaseEnterKey">请输入查询关键词</string>
+    <string name="queryError">无网络或查询异常</string>
+    <string name="title_activity_intro">电影详情</string>
+    <string name="queryEmpty">无查询结果</string>
+    <string name="downloadMovie">已复制下载链接,请启动迅雷进行下载!</string>
+    <string name="download">下载</string>
+    <string name="movieIntroContent">电影介绍</string>
+    <string name="downloadUrlNotParsed">下载链接还未解析完,请稍等</string>
+</resources>
