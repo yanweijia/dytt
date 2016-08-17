@@ -14,6 +14,8 @@
     <string name="queryEmpty">无查询结果</string>
     <string name="downloadMovie">已复制下载链接,请启动迅雷进行下载!</string>
     <string name="download">下载</string>
-    <string name="movieIntroContent">电影介绍</string>
+    <string name="movieIntroContent">○正在加载电影介绍</string>
     <string name="downloadUrlNotParsed">下载链接还未解析完,请稍等</string>
+    <string name="downloadURL">下载链接</string>
+    <string name="downloadInstruction">复制链接,打开手机迅雷进行下载</string>
 </resources>

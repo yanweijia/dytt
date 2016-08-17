@@ -8,7 +8,7 @@
         android:layout_height="10dip"/>
     <TextView
         android:id="@+id/textView_searchmovieTitle"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textColor="@color/movieTitle"
         android:paddingStart="10dip"
         android:paddingLeft="10dip"
@@ -19,7 +19,7 @@
         android:text="@string/movieTitle"/>
     <TextView
         android:id="@+id/textView_searchmovieDate"
-        android:textSize="16sp"
+        android:textSize="12sp"
         android:layout_gravity="end"
         android:paddingLeft="15dip"
         android:paddingStart="15dip"

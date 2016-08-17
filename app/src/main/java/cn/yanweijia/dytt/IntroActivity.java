@@ -1,6 +1,8 @@
 package cn.yanweijia.dytt;
 
 
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,7 +10,7 @@ import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,6 +28,7 @@ public class IntroActivity extends AppCompatActivity {
     private boolean isLoaded = false;
     private ImageView[] imageView = null;
     private TextView textView_content = null;
+    private TextView textView_downloadURL = null;
     private Bitmap[]  bitmap = null;
     private String downloadURL = null;
     private String url = null;
@@ -38,13 +41,14 @@ public class IntroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_intro);
         Bundle bundle = getIntent().getExtras();
         //绑定控件
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         imageView = new ImageView[2];
         imageView[0] = (ImageView) findViewById(R.id.imageView_introimg1);
         imageView[1] = (ImageView) findViewById(R.id.imageView_introimg2);
         bitmap = new Bitmap[2];
         textView_content = (TextView) findViewById(R.id.textView_intro);
-
+        textView_downloadURL = (TextView) findViewById(R.id.textView_intro_downloadLink);
+        
         initViews();    //初始化Views
 
         //网页地址
@@ -68,9 +72,9 @@ public class IntroActivity extends AppCompatActivity {
                     return false;
                 }
                 if(msg.what == 2){
-                    //TODO:将加载好的介绍,下载链接 更新到TextView中
-                    textView_content.setText(content + "\n" + downloadURL);
-
+                    //将加载好的介绍,下载链接 更新到TextView中
+                    textView_content.setText(content);
+                    textView_downloadURL.setText(Html.fromHtml("<u>" + downloadURL + "</u>"));
                     return false;
                 }
                 if(msg.what == 5){//无网络连接
@@ -88,7 +92,6 @@ public class IntroActivity extends AppCompatActivity {
                     handler.sendEmptyMessage(5);
                     return;
                 }
-                Log.d(TAG, "run: 运行到这里了");
                 //获取下载页面详细信息
                 DetailInfo detailInfo = analyzeWebPage.getDownloadInfo(url);
                 isLoaded = true;    //加载成功
@@ -96,7 +99,7 @@ public class IntroActivity extends AppCompatActivity {
                 content = detailInfo.getContent();
                 handler.sendEmptyMessage(2);    //将介绍,下载链接更新
                 final List<String> imgList = detailInfo.getImgLsit();
-                for(int i = 0 ; i < imgList.size() ; i++){
+                for(int i = 0 ; i < imgList.size() && i < bitmap.length ; i++){
                     String imgURL = imgList.get(i);
                     bitmap[i] = Tools.getHttpBitmap(imgURL);
                     handler.sendEmptyMessage(i);
@@ -112,9 +115,23 @@ public class IntroActivity extends AppCompatActivity {
     private void initViews(){
 
 
-        if(fab == null)
-            return;
-        //TODO:浮动按钮(下载链接)被点击后
+
+        //点击下载链接
+        textView_downloadURL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: 下载链接被单击");
+                copyToClipBoard(v,textView_downloadURL.getText().toString());
+            }
+        });
+
+        //TODO:给两个imageView添加点击事件
+
+
+
+
+
+        //浮动按钮(下载链接)被点击后
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,15 +144,32 @@ public class IntroActivity extends AppCompatActivity {
                     Snackbar.make(view, R.string.downloadUrlNotParsed, Snackbar.LENGTH_LONG)
                             .setAction("Action",null).show();
                 }else{
-                    Snackbar.make(view, R.string.downloadMovie, Snackbar.LENGTH_LONG)
-                            .setAction(R.string.download, new View.OnClickListener(){
-                                @Override
-                                public void onClick(View v) {
-
-                                }
-                            }).show();
+                    //复制到黏贴板并提示
+                    copyToClipBoard(view,Tools.convertToThunderLink(downloadURL));
                 }
+                Log.d(TAG, "onClick: 已经复制到黏贴板");
             }
         });
+
+
+
+
+    }
+
+    /**
+     * 复制到剪切板并提示
+     * @param view Snacker所在的View
+     * @param str 要复制的字符串
+     */
+    private void copyToClipBoard(View view,final String str){
+        Snackbar.make(view, R.string.downloadMovie, Snackbar.LENGTH_LONG)
+                .setAction(R.string.download, new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        //复制数据
+                        ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                        cm.setText(str);
+                    }
+                }).show();
     }
 }

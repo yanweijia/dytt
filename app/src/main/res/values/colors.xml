@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F52B5</color>
     <color name="colorPrimaryDark">#305F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#66BB66</color>
 
 
     <color name="teal">#00796B</color>
@@ -14,4 +14,7 @@
 
 
     <color name="movieTitle">#222222</color>
+    <color name="introTextColor">#232323</color>
+    <color name="downloadBackground">#FDFDDF</color>
+    <color name="downloadTextColor">#305F9B</color>
 </resources>

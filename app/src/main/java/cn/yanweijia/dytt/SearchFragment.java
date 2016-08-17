@@ -1,6 +1,7 @@
 package cn.yanweijia.dytt;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -63,9 +64,9 @@ public class SearchFragment extends Fragment{
                     return false;
                 }
                 if(msg.what == 2){
-                    //TODO:把Toast改成Dialog
                     Toast.makeText(getContext(),R.string.pleaseEnterKey,Toast.LENGTH_LONG).show();
                     //清空上次的查询结果
+                    list = adapter.getList();
                     list.clear();
                     adapter.notifyDataSetChanged();
                 }
@@ -77,7 +78,15 @@ public class SearchFragment extends Fragment{
         //初始化View
         initViews();
 
-
+        //如果获取过信息
+        list.clear();
+        if(((MainActivity)getActivity()).getList_searchResult() != null){
+            list.addAll(((MainActivity)getActivity()).getList_searchResult());
+        }
+        if(list.size() != 0){
+            //通知adapter更新数据
+            handler.sendEmptyMessage(1);
+        }
 
 
         return view;
@@ -120,6 +129,7 @@ public class SearchFragment extends Fragment{
 
                     list.add(map);
                 }
+                ((MainActivity)getActivity()).setList_searchResult(list);
                 //通知adapter更新数据
                 handler.sendEmptyMessage(1);
             }
@@ -165,6 +175,21 @@ public class SearchFragment extends Fragment{
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        //recyclerView的监听器
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(),IntroActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("url",list.get(position).get("url"));
+                bundle.putString("title",list.get(position).get("name"));
+                intent.putExtras(bundle);
+                Log.d(TAG, "onItemClick: position:" + position + "\turl:" + list.get(position).get("url"));
+                startActivity(intent);
+            }
+        }));
+
     }
 
 

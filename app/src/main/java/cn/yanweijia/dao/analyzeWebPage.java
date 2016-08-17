@@ -19,7 +19,8 @@ import cn.yanweijia.utils.Tools;
 public class analyzeWebPage {
 	//网站域名
 	private static final String DOMAIN = "http://www.ygdy8.net";
-	
+	//搜索结果所在域名
+	private static final String DOMAIN_SEARCH = "http://s.dydytt.net";
 	public static void main(String[] args) {
 	    searchMovie("关键词");
 	}
@@ -52,7 +53,7 @@ public class analyzeWebPage {
 		Matcher matcher = pattern.matcher(sourceStr);
 		Matcher matcher_date = pattern_date.matcher(sourceStr);
 		while(matcher.find() && matcher_date.find()){
-			String movieUrl = DOMAIN + matcher.group(1);
+			String movieUrl = DOMAIN_SEARCH + matcher.group(1);
 			String movieTitle = matcher.group(2);
 			movieTitle = movieTitle.replaceAll("</font>", "").replaceAll("<font color='red'>", "");
 			String date = matcher_date.group();

@@ -168,8 +168,8 @@ public class Tools {
 			is.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+			return null;
 		}
 		return bitmap;
 	}
-	
 }

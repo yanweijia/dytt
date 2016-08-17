@@ -66,19 +66,32 @@ public class NewMovieFragment extends Fragment {
         initViews();
 
 
-        //如果没有网络,则提示用户并返回
-        if(!Tools.isNetworkAvailable(getActivity())){
-            Toast.makeText(getContext(),R.string.noInternet,Toast.LENGTH_LONG).show();
-            return view;
+        //如果获取过信息
+        list.clear();
+        if(((MainActivity)getActivity()).getList_newMovie() != null) {
+            list.addAll(((MainActivity) getActivity()).getList_newMovie());
         }
-        //有网络,开始尝试联网加载数据,用新线程,防止UI界面等待
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                list.clear();
-                getRefreshDatasToListAndNotifyUpdate();
+        if(list.size() != 0){
+            //通知adapter更新数据
+            handler.sendEmptyMessage(1);
+        }else{
+            //第一次打开软件
+            //如果没有网络,则提示用户并返回
+            if(!Tools.isNetworkAvailable(getActivity())){
+                Toast.makeText(getContext(),R.string.noInternet,Toast.LENGTH_LONG).show();
+                return view;
             }
-        }).start();
+            //有网络,开始尝试联网加载数据,用新线程,防止UI界面等待
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    list = adapter.getList();
+                    list.clear();
+                    getRefreshDatasToListAndNotifyUpdate();
+                }
+            }).start();
+        }
+
 
         return view;
     }
@@ -119,6 +132,7 @@ public class NewMovieFragment extends Fragment {
 
                     list.add(map);
                 }
+                ((MainActivity)getActivity()).setList_newMovie(list);
                 //通知adapter更新数据
                 handler.sendEmptyMessage(1);
             }
