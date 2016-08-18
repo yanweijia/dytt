@@ -145,7 +145,7 @@ public class IntroActivity extends AppCompatActivity {
                             .setAction("Action",null).show();
                 }else{
                     //复制到黏贴板并提示
-                    copyToClipBoard(view,Tools.convertToThunderLink(downloadURL));
+                    copyToClipBoard(view,downloadURL);
                 }
                 Log.d(TAG, "onClick: 已经复制到黏贴板");
             }

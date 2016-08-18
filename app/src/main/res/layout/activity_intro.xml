@@ -93,18 +93,24 @@
         </LinearLayout>
 
     </ScrollView>
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <!--下面这个布局是为了防止Snackbar覆盖FloatingActionButton,Snackbar显示后button自动往上浮动-->
+    <android.support.design.widget.CoordinatorLayout
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_marginEnd="10dip"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/download" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginEnd="10dip"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/download" />
+    </android.support.design.widget.CoordinatorLayout>
 
 </RelativeLayout>

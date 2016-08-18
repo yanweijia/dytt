@@ -116,13 +116,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
      * @param tempList list
      */
     public void setList_newMovie(List<HashMap<String,String>> tempList){
-        this.list_newMovie = new ArrayList<HashMap<String,String>>(tempList);
+        if(tempList!=null) {
+            this.list_newMovie = new ArrayList<HashMap<String, String>>(tempList);
+        }
     }
     /**
      * 设置搜索结果的list
      * @param tempList list
      */
     public void setList_searchResult(List<HashMap<String,String>> tempList){
-        this.list_searchResult = new ArrayList<HashMap<String,String>>(tempList);
+        if(tempList!=null) {
+            this.list_searchResult = new ArrayList<HashMap<String, String>>(tempList);
+        }
     }
 }

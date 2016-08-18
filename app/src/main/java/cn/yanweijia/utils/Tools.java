@@ -79,7 +79,7 @@ public class Tools {
 	public static String convertToThunderLink(String url){
 		url = "AA" + url + "ZZ";
 		String result = "thunder://" + Tools.Base64Encoding(url);
-		result = result.replaceAll("\r\n", "");
+		result = result.replaceAll("\n", "").replaceAll("\r","");
 		return result;
 	}
 	

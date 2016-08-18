@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">电影天堂</string>
+    <string name="noInternet">无网络连接或网路异常,请打开网络进行刷新</string>
+    <string name="confirm">确认</string>
+    <string name="cancel">取消</string>
+
+
+
+    <!--主界面资源-->
     <string name="searchHint">请输入关键词</string>
     <string name="newMovie">最新电影</string>
     <string name="search">搜索</string>
     <string name="setting">设置</string>
-    <string name="noInternet">无网络连接或网路异常,请打开网络进行刷新</string>
     <string name="noMoreMovie">没有更多最新电影了</string>
     <string name="movieTitle">电影标题</string>
     <string name="movieDate">更新日期</string>
@@ -12,10 +18,38 @@
     <string name="queryError">无网络或查询异常</string>
     <string name="title_activity_intro">电影详情</string>
     <string name="queryEmpty">无查询结果</string>
+
+
+    <!--IntroActivity用到的-->
     <string name="downloadMovie">已复制下载链接,请启动迅雷进行下载!</string>
     <string name="download">下载</string>
     <string name="movieIntroContent">○正在加载电影介绍</string>
     <string name="downloadUrlNotParsed">下载链接还未解析完,请稍等</string>
     <string name="downloadURL">下载链接</string>
     <string name="downloadInstruction">复制链接,打开手机迅雷进行下载</string>
+
+    <!--设置Fragment用到的-->
+    <string name="about">关于软件</string>
+    <string name="about_intro">关于电影天堂</string>
+    <string name="closeAD">关闭软件广告</string>
+    <string name="closeAD_intro">只需要在建议反馈中给我提供宝贵的建议即可关闭广告</string>
+    <string name="checkUpdate">检测软件更新</string>
+    <string name="checkUpdate_intro">检测是否有更新版本</string>
+    <string name="checkupdateText">您使用的软件已经是最新啦!</string>
+    <string name="feedback">建议反馈</string>
+    <string name="feedback_intro">请将您宝贵的建议反馈给我,任何的改进意见和进一步的需求都是我进步的动力!</string>
+    <string name="aboutAuthor">关于作者</string>
+    <string name="aboutAuthor_intro">昵称:风旋碧浪\n网站博客:<u>http://www.yanweijia.cn</u>\n邮箱:<u>admin#yanweijia.cn</u>(请将#换为@)</string>
+    <string name="blogURL">http://www.yanweijia.cn</string>
+    <string name="aboutSoftware">　　本软件旨在为方便广大用户,不用经常性的登录电影天堂PC端网站查看最新电影\n\n　　任何时候通过手机客户端都可以搜索出最近更新的免费电影资源\n\n　　更能实时获取下载链接通过手机迅雷进行下载.</string>
+    <string name="closeADText">快去提建议哦亲!</string>
+    <string name="title_activity_feedback">建议反馈</string>
+
+    <!-- 建议反馈Activity -->
+    <string name="contactWay">联系方式</string>
+    <string name="feedbackContent">反馈内容</string>
+    <string name="confirmFeedback">确 认 反 馈</string>
+    <string name="contentEmptyOrToLess">反馈内容为空或过少,请输入至少5个字的反馈</string>
+    <string name="contactEmpty">请输入联系方式</string>
+
 </resources>

@@ -17,4 +17,6 @@
     <color name="introTextColor">#232323</color>
     <color name="downloadBackground">#FDFDDF</color>
     <color name="downloadTextColor">#305F9B</color>
+    <color name="layoutPressed">#B8DD22</color>
+    <color name="feedBackEditText">#D8DD22</color>
 </resources>
