@@ -21,6 +21,7 @@ import java.util.List;
 
 import cn.yanweijia.beans.DetailInfo;
 import cn.yanweijia.dao.analyzeWebPage;
+import cn.yanweijia.utils.ThunderHelper;
 import cn.yanweijia.utils.Tools;
 
 public class IntroActivity extends AppCompatActivity {
@@ -162,13 +163,15 @@ public class IntroActivity extends AppCompatActivity {
      * @param str 要复制的字符串
      */
     private void copyToClipBoard(View view,final String str){
+        //复制数据
+        ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        cm.setText(str);
         Snackbar.make(view, R.string.downloadMovie, Snackbar.LENGTH_LONG)
                 .setAction(R.string.download, new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        //复制数据
-                        ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                        cm.setText(str);
+                        //启动迅雷下载
+                        ThunderHelper.getInstance(IntroActivity.this).onClickDownload(str);
                     }
                 }).show();
     }

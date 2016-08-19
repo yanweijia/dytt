@@ -44,6 +44,7 @@
     <string name="aboutSoftware">　　本软件旨在为方便广大用户,不用经常性的登录电影天堂PC端网站查看最新电影\n\n　　任何时候通过手机客户端都可以搜索出最近更新的免费电影资源\n\n　　更能实时获取下载链接通过手机迅雷进行下载.</string>
     <string name="closeADText">快去提建议哦亲!</string>
     <string name="title_activity_feedback">建议反馈</string>
+    <string name="visitAutherBlog">点击确定访问作者博客网站</string>
 
     <!-- 建议反馈Activity -->
     <string name="contactWay">联系方式</string>
@@ -51,5 +52,8 @@
     <string name="confirmFeedback">确 认 反 馈</string>
     <string name="contentEmptyOrToLess">反馈内容为空或过少,请输入至少5个字的反馈</string>
     <string name="contactEmpty">请输入联系方式</string>
+    <string name="feedbackURL">http://feedback.yanweijia.cn:8080/feedback_dytt</string>
+    <string name="feedbackError">反馈失败或异常</string>
+    <string name="feedbackSuccess">感谢您的无偿反馈</string>
 
 </resources>

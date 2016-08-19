@@ -81,7 +81,7 @@ public class SettingFragment extends Fragment{
             public void onClick(View v) {
                 new AlertDialog.Builder(getActivity())
                         .setTitle("提示:")
-                        .setMessage("点击确定访问作者博客")
+                        .setMessage(R.string.visitAutherBlog)
                         .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
