@@ -58,7 +58,7 @@ public class FeedbackActivity extends AppCompatActivity{
         handler = new Handler(new Handler.Callback(){
             @Override
             public boolean handleMessage(Message msg) {
-                Log.d(TAG, "handleMessage: " + msg.what);
+//                Log.d(TAG, "handleMessage: " + msg.what);
                 if(msg.what == 0) {
                     //反馈失败或异常
                     new AlertDialog.Builder(FeedbackActivity.this)

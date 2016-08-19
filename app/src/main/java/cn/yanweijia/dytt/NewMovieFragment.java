@@ -15,11 +15,13 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import java.util.HashMap;
 import java.util.List;
 import cn.yanweijia.beans.Link;
 import cn.yanweijia.dao.analyzeWebPage;
+import cn.yanweijia.utils.DBHelper;
 import cn.yanweijia.utils.Tools;
 
 
@@ -32,6 +34,7 @@ public class NewMovieFragment extends Fragment {
     private Handler handler;    //用来更新界面的handler
     private List<HashMap<String,String>> list;  //放数据的list
     private int lastVisibleItem;    //最后一个可视的View
+    private LinearLayout linearLayout_ad;   //放广告的Layout
 
 
     private static final String TAG = "NewMovieFragment";
@@ -44,6 +47,7 @@ public class NewMovieFragment extends Fragment {
         getActivity().setTitle(R.string.newMovie);
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerview_newmovie);
         swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipe_refresh_widget_newmovie);
+        linearLayout_ad = (LinearLayout) view.findViewById(R.id.linearLayout_newMovieAd);
 
         //Handler的CallBack回调方法
         handler = new Handler(new Handler.Callback(){
@@ -246,6 +250,16 @@ public class NewMovieFragment extends Fragment {
                 startActivity(intent);
             }
         }));
+
+        //判断是否已经取消了广告,如果没有取消,则显示
+        DBHelper dbHelper = new DBHelper(getContext(),"ad.db",null,1);
+        boolean isRemovedAD = dbHelper.isRemovedAD();
+        dbHelper.close();
+        if(!isRemovedAD){
+            //TODO:在这里放广告
+
+        }
+
 
     }
 

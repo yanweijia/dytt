@@ -14,6 +14,7 @@ import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,20 +22,26 @@ import java.util.List;
 
 import cn.yanweijia.beans.DetailInfo;
 import cn.yanweijia.dao.analyzeWebPage;
+import cn.yanweijia.utils.DBHelper;
 import cn.yanweijia.utils.ThunderHelper;
 import cn.yanweijia.utils.Tools;
 
 public class IntroActivity extends AppCompatActivity {
-    private Handler handler = null;
-    private boolean isLoaded = false;
-    private ImageView[] imageView = null;
-    private TextView textView_content = null;
-    private TextView textView_downloadURL = null;
-    private Bitmap[]  bitmap = null;
-    private String downloadURL = null;
-    private String url = null;
-    private String content = null;
-    private FloatingActionButton fab;
+    private Handler handler = null; //操作UI线程的Handler
+    private boolean isLoaded = false;   //是否已经加载完毕,当下载地址解析完成后边为true,这样点击下载按钮后会人性化提示未加载完成
+    private ImageView[] imageView = null;   //放电影图片的View
+    private TextView textView_content = null;   //介绍内容
+    private TextView textView_downloadURL = null;   //下载地址
+    private Bitmap[]  bitmap = null;    //图片
+    private String downloadURL = null;  //下载地址
+    private String url = null;  //电影介绍网页
+    private String content = null;  //电影介绍
+    private FloatingActionButton fab;   //下载按钮
+
+    private LinearLayout linearLayout_ad = null;    //放广告的Layout
+
+
+
     private static final String TAG = "IntroActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +56,8 @@ public class IntroActivity extends AppCompatActivity {
         bitmap = new Bitmap[2];
         textView_content = (TextView) findViewById(R.id.textView_intro);
         textView_downloadURL = (TextView) findViewById(R.id.textView_intro_downloadLink);
-        
+        linearLayout_ad = (LinearLayout) findViewById(R.id.linearLayout_introAd);
+
         initViews();    //初始化Views
 
         //网页地址
@@ -115,8 +123,6 @@ public class IntroActivity extends AppCompatActivity {
      */
     private void initViews(){
 
-
-
         //点击下载链接
         textView_downloadURL.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,8 +133,6 @@ public class IntroActivity extends AppCompatActivity {
         });
 
         //TODO:给两个imageView添加点击事件
-
-
 
 
 
@@ -152,6 +156,14 @@ public class IntroActivity extends AppCompatActivity {
             }
         });
 
+        //系统判断是否已经取消了广告
+        DBHelper dbHelper = new DBHelper(IntroActivity.this,"ad.db",null,1);
+        boolean isRemovedAD = dbHelper.isRemovedAD();
+        dbHelper.close();
+        if(!isRemovedAD){
+            //TODO:在这里放广告
+
+        }
 
 
 

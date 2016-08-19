@@ -6,7 +6,7 @@
 
     <!--放广告的Layout-->
     <LinearLayout
-        android:id="@+id/linearLayout_ad"
+        android:id="@+id/linearLayout_newMovieAd"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

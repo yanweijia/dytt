@@ -102,7 +102,7 @@ public class SettingFragment extends Fragment{
         linearLayout_checkUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO:链接网络查看是否有最新版的软件
+                //链接网络查看是否有最新版的软件
 
                 //查看是否有网络
                 if(!Tools.isNetworkAvailable(getActivity())){
