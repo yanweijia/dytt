@@ -23,6 +23,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import cn.yanweijia.utils.DBHelper;
 import cn.yanweijia.utils.GetHTML;
 import cn.yanweijia.utils.GetInfoUtils;
 import cn.yanweijia.utils.HttpRequest;
@@ -76,8 +77,10 @@ public class FeedbackActivity extends AppCompatActivity{
                             .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    //TODO:这里取消广告的代码
-
+                                    //这里取消广告的代码
+                                    DBHelper dbHelper = new DBHelper(FeedbackActivity.this,"ad.db",null,1);
+                                    dbHelper.removeAD();
+                                    dbHelper.close();
                                     FeedbackActivity.this.finish();
                                 }
                             })
@@ -91,10 +94,6 @@ public class FeedbackActivity extends AppCompatActivity{
         btn_feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
-
 
                 //判断联系方式是否为空
                 final String contact = editText_contact.getText().toString();
