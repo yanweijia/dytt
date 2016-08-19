@@ -17,7 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
+import com.adsmogo.adapters.AdsMogoCustomEventPlatformEnum;
+import com.adsmogo.adview.AdsMogoLayout;
+import com.adsmogo.controller.listener.AdsMogoListener;
 import com.baidu.mobstat.StatService;
 
 import java.util.HashMap;
@@ -260,10 +262,39 @@ public class NewMovieFragment extends Fragment {
         dbHelper.close();
         if(!isRemovedAD){
             //TODO:在这里放广告
-
+            AdsMogoLayout adsMogoLayoutCode = new AdsMogoLayout(getActivity(), "253352909fb3459babbff4adc49ca4ab");
+            //设置广告出现的位置(悬浮于底部)
+            adsMogoLayoutCode.setAdsMogoListener(new AdsMogoListener() {
+                @Override
+                public void onInitFinish() {}
+                @Override
+                public void onRequestAd(String s) {}
+                @Override
+                public void onRealClickAd() {}
+                @Override
+                public void onReceiveAd(ViewGroup viewGroup, String s) {}
+                @Override
+                public void onFailedReceiveAd() {}
+                @Override
+                public void onClickAd(String s) {}
+                @Override
+                public boolean onCloseAd() {return false;}
+                @Override
+                public void onCloseMogoDialog() {}
+                @Override
+                public Class getCustomEvemtPlatformAdapterClass(AdsMogoCustomEventPlatformEnum adsMogoCustomEventPlatformEnum) {return null;}
+            });
+            linearLayout_ad.addView(adsMogoLayoutCode);
         }
 
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //TODO:销毁adsMogo的资源并清空线程
+        AdsMogoLayout.clear();
     }
 
     @Override

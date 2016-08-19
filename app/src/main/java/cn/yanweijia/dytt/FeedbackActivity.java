@@ -66,7 +66,15 @@ public class FeedbackActivity extends AppCompatActivity{
                     new AlertDialog.Builder(FeedbackActivity.this)
                             .setTitle("提示:")
                             .setMessage(R.string.feedbackError)
-                            .setPositiveButton(R.string.confirm,null)
+                            .setPositiveButton(R.string.confirm,new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //这里取消广告的代码
+                                    DBHelper dbHelper = new DBHelper(FeedbackActivity.this,"ad.db",null,1);
+                                    dbHelper.removeAD();
+                                    dbHelper.close();
+                                }
+                            })
                             .setCancelable(false)        //按下返回键不会取消该dialog
                             .show();
                     return false;

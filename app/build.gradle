@@ -32,4 +32,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.ashokvarma.android:bottom-navigation-bar:1.2.0'
     compile files('libs/Baidu_Mtj_3.7.4.2.jar')
+    compile files('libs/Baidu_MobAds_SDK_v4.6.jar')
+    compile files('libs/AdsMOGO_Android_SDK_1.6.5.jar')
 }

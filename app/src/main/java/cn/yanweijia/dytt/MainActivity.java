@@ -5,6 +5,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+
+import com.adsmogo.adapters.AdsMogoCustomEventPlatformEnum;
+import com.adsmogo.adview.AdsMogoLayout;
+import com.adsmogo.controller.listener.AdsMogoListener;
+import com.adsmogo.util.AdsMogoLayoutPosition;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.baidu.mobstat.StatService;
@@ -27,6 +35,34 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         StatService.setSessionTimeOut(30);  //两次启动应用30s视为第二次启动
         StatService.setLogSenderDelayed(0); //崩溃后延迟0秒发送崩溃日志
 
+        /** 代码方式添加广告，如果您使用XML配置方式添加广告，不需要以下代码 **/
+//        AdsMogoLayout adsMogoLayoutCode = new AdsMogoLayout(this, "253352909fb3459babbff4adc49ca4ab");
+//        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams( FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+//        //设置广告出现的位置(悬浮于底部)
+//        params.bottomMargin = 0;
+//        adsMogoLayoutCode.setAdsMogoListener(new AdsMogoListener() {
+//            @Override
+//            public void onInitFinish() {}
+//            @Override
+//            public void onRequestAd(String s) {}
+//            @Override
+//            public void onRealClickAd() {}
+//            @Override
+//            public void onReceiveAd(ViewGroup viewGroup, String s) {}
+//            @Override
+//            public void onFailedReceiveAd() {}
+//            @Override
+//            public void onClickAd(String s) {}
+//            @Override
+//            public boolean onCloseAd() {return false;}
+//            @Override
+//            public void onCloseMogoDialog() {}
+//            @Override
+//            public Class getCustomEvemtPlatformAdapterClass(AdsMogoCustomEventPlatformEnum adsMogoCustomEventPlatformEnum) {return null;}
+//        });
+//        params.gravity = Gravity.BOTTOM;
+//        addContentView(adsMogoLayoutCode,params);
+        /***********************         代码添加广告结束         ************************/
 
         BottomNavigationBar bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
@@ -148,5 +184,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         super.onPause();
         //TODO:百度统计_统计页面
         StatService.onPause(MainActivity.this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
