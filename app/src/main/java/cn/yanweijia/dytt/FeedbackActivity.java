@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.baidu.mobstat.StatService;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -184,6 +186,19 @@ public class FeedbackActivity extends AppCompatActivity{
                 }).start();
             }
         });
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //TODO:百度统计_统计页面
+        StatService.onResume(FeedbackActivity.this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //TODO:百度统计_统计页面
+        StatService.onPause(FeedbackActivity.this);
     }
 }
 

@@ -17,6 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.baidu.mobstat.StatService;
+
 import java.util.HashMap;
 import java.util.List;
 import cn.yanweijia.beans.Link;
@@ -261,6 +264,20 @@ public class NewMovieFragment extends Fragment {
         }
 
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //TODO:百度统计_统计页面
+        StatService.onResume(getContext());
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //TODO:百度统计_统计页面
+        StatService.onPause(getContext());
     }
 
     public static NewMovieFragment newInstance() {

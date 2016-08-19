@@ -18,6 +18,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baidu.mobstat.StatService;
+
 import java.util.List;
 
 import cn.yanweijia.beans.DetailInfo;
@@ -186,5 +188,19 @@ public class IntroActivity extends AppCompatActivity {
                         ThunderHelper.getInstance(IntroActivity.this).onClickDownload(str);
                     }
                 }).show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //TODO:百度统计_统计页面
+        StatService.onResume(IntroActivity.this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //TODO:百度统计_统计页面
+        StatService.onPause(IntroActivity.this);
     }
 }

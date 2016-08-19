@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.baidu.mobstat.StatService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,13 +15,19 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
     private ArrayList<Fragment> fragments;
-    //分别是最新电影和搜索结果的list
+    //分别是最新电影和搜索结果的list,用于保存临时状态,切换Fragment时候可以直接载入此数据
     private List<HashMap<String,String>> list_newMovie = null;
     private List<HashMap<String,String>> list_searchResult = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //TODO:百度统计初始化
+        StatService.setSessionTimeOut(30);  //两次启动应用30s视为第二次启动
+        StatService.setLogSenderDelayed(0); //崩溃后延迟0秒发送崩溃日志
+
+
         BottomNavigationBar bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
         bottomNavigationBar
@@ -128,5 +135,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         if(tempList!=null) {
             this.list_searchResult = new ArrayList<HashMap<String, String>>(tempList);
         }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //TODO:百度统计_统计页面
+        StatService.onResume(MainActivity.this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //TODO:百度统计_统计页面
+        StatService.onPause(MainActivity.this);
     }
 }

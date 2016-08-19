@@ -19,6 +19,8 @@ import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.baidu.mobstat.StatService;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -204,5 +206,17 @@ public class SearchFragment extends Fragment{
         return new SearchFragment();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        //TODO:百度统计_统计页面
+        StatService.onResume(getContext());
+    }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        //TODO:百度统计_统计页面
+        StatService.onPause(getContext());
+    }
 }

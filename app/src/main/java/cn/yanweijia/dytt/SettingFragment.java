@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.baidu.mobstat.StatService;
+
 import cn.yanweijia.utils.Tools;
 
 
@@ -146,7 +148,7 @@ public class SettingFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(getActivity())
-                        .setTitle("赶!快!行!动!")
+                        .setTitle("赶 快 行 动!")
                         .setMessage(R.string.closeADText)
                         .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
                             @Override
@@ -162,5 +164,18 @@ public class SettingFragment extends Fragment{
                         .show();
             }
         });
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        //TODO:百度统计_统计页面
+        StatService.onResume(getContext());
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //TODO:百度统计_统计页面
+        StatService.onPause(getContext());
     }
 }
