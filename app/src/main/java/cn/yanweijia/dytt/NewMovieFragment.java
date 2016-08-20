@@ -248,6 +248,9 @@ public class NewMovieFragment extends Fragment {
                 Intent intent = new Intent();
                 intent.setClass(getActivity(),IntroActivity.class);
                 Bundle bundle = new Bundle();
+                //防止没有数据的时候崩溃
+                if(list.size() == 0 || position > list.size())
+                    return;
                 bundle.putString("url",list.get(position).get("url"));
                 bundle.putString("title",list.get(position).get("name"));
                 intent.putExtras(bundle);
