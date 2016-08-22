@@ -34,4 +34,5 @@ dependencies {
     compile files('libs/Baidu_Mtj_3.7.4.2.jar')
     compile files('libs/Baidu_MobAds_SDK_v4.6.jar')
     compile files('libs/AdsMOGO_Android_SDK_1.6.5.jar')
+    compile files('libs/Adwo_Android_SDK6.2.jar')
 }
