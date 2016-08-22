@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">电影天堂</string>
+    <string name="app_name">电影公园</string>
     <string name="noInternet">无网络连接或网路异常,请打开网络进行刷新</string>
     <string name="confirm">确认</string>
     <string name="cancel">取消</string>

@@ -22,6 +22,8 @@ import com.adsmogo.adapters.AdsMogoCustomEventPlatformEnum;
 import com.adsmogo.adview.AdsMogoLayout;
 import com.adsmogo.controller.listener.AdsMogoListener;
 import com.baidu.mobstat.StatService;
+
+import java.util.Date;
 import java.util.List;
 import cn.yanweijia.beans.DetailInfo;
 import cn.yanweijia.dao.analyzeWebPage;
@@ -40,6 +42,7 @@ public class IntroActivity extends AppCompatActivity {
     private String url = null;  //电影介绍网页
     private String content = null;  //电影介绍
     private FloatingActionButton fab;   //下载按钮
+    private TextView textView_copyAndDownload = null;   //下载提示文字
 
     private LinearLayout linearLayout_ad = null;    //放广告的Layout
 
@@ -60,6 +63,7 @@ public class IntroActivity extends AppCompatActivity {
         textView_content = (TextView) findViewById(R.id.textView_intro);
         textView_downloadURL = (TextView) findViewById(R.id.textView_intro_downloadLink);
         linearLayout_ad = (LinearLayout) findViewById(R.id.linearLayout_introAd);
+        textView_copyAndDownload = (TextView)findViewById(R.id.textview_intro_copyAndDownload);
 
         initViews();    //初始化Views
 
@@ -87,6 +91,7 @@ public class IntroActivity extends AppCompatActivity {
                     //将加载好的介绍,下载链接 更新到TextView中
                     textView_content.setText(content);
                     textView_downloadURL.setText(Html.fromHtml("<u>" + downloadURL + "</u>"));
+                    JudgeAndRemoveDownloadURL();    //判断日期在前则关闭下载链接
                     return false;
                 }
                 if(msg.what == 5){//无网络连接
@@ -190,7 +195,8 @@ public class IntroActivity extends AppCompatActivity {
             linearLayout_ad.addView(adsMogoLayoutCode);
         }
 
-
+        //判断时间是否在指定日期之前,如果在,则取消广告
+        JudgeAndRemoveDownloadURL();
 
     }
 
@@ -232,5 +238,20 @@ public class IntroActivity extends AppCompatActivity {
         super.onDestroy();
         //TODO:销毁adsMogo的资源并清空线程
         AdsMogoLayout.clear();
+    }
+
+    /**
+     * 判断日期并移除下载链接,防止应用市场审核不通过
+     */
+    private void JudgeAndRemoveDownloadURL(){
+        Date now = new Date();
+        Date specificDate = new Date("2016/09/01");
+        //Log.d(TAG, "JudgeAndRemoveDownloadURL: " + now.toString() + specificDate.toString());
+        if(now.getTime()<specificDate.getTime()){
+            textView_downloadURL.setText("");
+            fab.setImageDrawable(null);
+            fab.setVisibility(View.GONE);//设置不可见,并不占用原来的空间
+            textView_copyAndDownload.setText("");
+        }
     }
 }

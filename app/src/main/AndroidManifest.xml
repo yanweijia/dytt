@@ -40,7 +40,7 @@
         <!-- 渠道商编号 -->
         <meta-data
             android:name="BaiduMobAd_CHANNEL"
-            android:value="test" />
+            android:value="openQQ" />
 
         <!-- 是否开启错误日志统计，默认为false -->
         <meta-data

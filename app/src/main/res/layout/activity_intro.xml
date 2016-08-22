@@ -83,6 +83,7 @@
             <!--下载说明-->
             <TextView
                 android:textSize="16sp"
+                android:id="@+id/textview_intro_copyAndDownload"
                 android:text="@string/downloadInstruction"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
